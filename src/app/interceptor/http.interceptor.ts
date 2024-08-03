@@ -6,10 +6,12 @@ export class httpInterceptorClass implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let newRequest = req
     const usertoken = localStorage.getItem(environment.userSecret)
+
     newRequest = req.clone({
       headers: newRequest.headers.set('Authorization', 'Bearer ' + usertoken),
       url: environment.apiurl + req.url
     })
+
     return next.handle(newRequest).pipe(tap(
       (event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

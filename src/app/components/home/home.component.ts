@@ -1,14 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProjectCreateComponent } from '../project-create/project-create.component';
+import { ProjectService } from '../../services/project/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  projects = [
-    { title: 'Project 1', description: 'Description for project 1' },
-    { title: 'Project 2', description: 'Description for project 2' },
-    { title: 'Project 3', description: 'Description for project 3' },
-  ];
+export class HomeComponent implements OnInit {
+  readonly dialog = inject(MatDialog);
+  constructor(private _ProjectService: ProjectService,private _router:Router) { }
+  Title = ''
+  projects = []
+  ngOnInit(): void {
+    this._ProjectService.user_project().subscribe({
+      next: (res: any) => {
+        this.projects = res['data']
+      }
+    })
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ProjectCreateComponent);
+    dialogRef.afterClosed().subscribe((res) => {
+      this._ProjectService.user_project().subscribe({
+        next: (res: any) => {
+          this.projects = res['data']
+        }
+      })
+    })
+  }
+  navigate(id:string){
+  this._router.navigate(['/project'],{queryParams:{id:id}})
+  }
+
 }
