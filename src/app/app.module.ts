@@ -25,6 +25,7 @@ import {
 } from '@angular/material/dialog';
 import { ProjectCreateComponent } from './components/project-create/project-create.component';
 import { ProjectComponent } from './components/project/project.component';
+import { TodoCreateComponent } from './components/todo-create/todo-create.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProjectComponent } from './components/project/project.component';
     RegisterComponent,
     HomeComponent,
     ProjectCreateComponent,
-    ProjectComponent
+    ProjectComponent,
+    TodoCreateComponent
   ],
   imports: [
     BrowserModule,
