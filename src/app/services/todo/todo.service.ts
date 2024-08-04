@@ -7,10 +7,13 @@ import { Injectable } from '@angular/core';
 export class TodoService {
 
   constructor(private _http: HttpClient) { }
-    todoCreate(data: any) {
-   return this._http.post('/todo/create', data)
+  todoCreate(data: any) {
+    return this._http.post('/todo/create', data)
   }
-  todoUpdate(data:any){
-return this._http.patch('/todo/update',data)
+  todoUpdate(data: any) {
+    return this._http.patch('/todo/update', data)
+  }
+  todoRemove(id: string, projectId: string) {
+    return this._http.delete(`/todo/remove?id=${id}&projectId=${projectId}`)
   }
 }

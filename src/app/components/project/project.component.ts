@@ -76,5 +76,16 @@ export class ProjectComponent implements OnInit {
       })
     })
   }
-
+  remove(id: string) {
+    this._todoService.todoRemove(id,this.projectId).subscribe({
+      next: (res) => {
+        this._projectService.get_project(this.projectId).subscribe({
+          next: (res: any) => {
+            this.editingTodoIndex=null
+            this.project = res['data'][0]
+          }
+        })
+      }
+    })
+  }
 }
