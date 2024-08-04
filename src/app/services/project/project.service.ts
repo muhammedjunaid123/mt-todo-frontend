@@ -20,4 +20,7 @@ export class ProjectService {
   Project_title(newTitle: string, projectId: string) {
     return this._http.patch('/project/titleUpdate', { id: projectId, Title: newTitle })
   }
+  GistExport(id:string){
+    return this._http.get(`/project/exportToGist?id=${id}`)
+  }
 }

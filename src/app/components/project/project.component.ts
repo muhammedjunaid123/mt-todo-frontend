@@ -97,4 +97,11 @@ export class ProjectComponent implements OnInit {
       }
     })
   }
+  export(){
+    this._projectService.GistExport(this.projectId).subscribe({
+      next:()=>{
+        this._toastr.success('Success')
+      }
+    })
+  }
 }

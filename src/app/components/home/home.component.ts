@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProjectCreateComponent } from '../project-create/project-create.component';
 import { ProjectService } from '../../services/project/project.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  constructor(private _ProjectService: ProjectService,private _router:Router) { }
+  constructor(private _ProjectService: ProjectService, private _router: Router) { }
   Title = ''
   projects = []
   ngOnInit(): void {
@@ -31,8 +32,10 @@ export class HomeComponent implements OnInit {
       })
     })
   }
-  navigate(id:string){
-  this._router.navigate(['/project'],{queryParams:{id:id}})
+  navigate(id: string) {
+    this._router.navigate(['/project'], { queryParams: { id: id } })
   }
-
+  logout() {
+    localStorage.removeItem(environment.userSecret)
+  }
 }
