@@ -14,7 +14,10 @@ export class ProjectService {
   user_project() {
     return this._http.get('/project/getUserProject')
   }
-  get_project(id:string) {
+  get_project(id: string) {
     return this._http.get(`/project/getProject?id=${id}`)
+  }
+  Project_title(newTitle: string, projectId: string) {
+    return this._http.patch('/project/titleUpdate', { id: projectId, Title: newTitle })
   }
 }

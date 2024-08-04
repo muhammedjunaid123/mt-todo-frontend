@@ -34,8 +34,17 @@ export class ProjectComponent implements OnInit {
   }
 
   saveTitle(newTitle: string): void {
-
-    this.editingTitle = false;
+    this._projectService.Project_title(newTitle, this.projectId).subscribe({
+      next: (res: any) => {
+        this._projectService.get_project(this.projectId).subscribe({
+          next: (res: any) => {
+            this.project = res['data'][0]
+          }
+        })
+        this.editingTitle = false;
+      }
+    })
+  
   }
 
   toggleEditTodo(index: number): void {
@@ -77,11 +86,11 @@ export class ProjectComponent implements OnInit {
     })
   }
   remove(id: string) {
-    this._todoService.todoRemove(id,this.projectId).subscribe({
+    this._todoService.todoRemove(id, this.projectId).subscribe({
       next: (res) => {
         this._projectService.get_project(this.projectId).subscribe({
           next: (res: any) => {
-            this.editingTodoIndex=null
+            this.editingTodoIndex = null
             this.project = res['data'][0]
           }
         })
