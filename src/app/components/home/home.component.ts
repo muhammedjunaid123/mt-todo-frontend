@@ -37,5 +37,6 @@ export class HomeComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem(environment.userSecret)
+    this._router.navigate(['login'])
   }
 }

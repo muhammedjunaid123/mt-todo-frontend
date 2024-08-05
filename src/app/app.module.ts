@@ -26,6 +26,7 @@ import {
 import { ProjectCreateComponent } from './components/project-create/project-create.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
+import { NotFoundComponent } from './compenents/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TodoCreateComponent } from './components/todo-create/todo-create.compon
     HomeComponent,
     ProjectCreateComponent,
     ProjectComponent,
-    TodoCreateComponent
+    TodoCreateComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
