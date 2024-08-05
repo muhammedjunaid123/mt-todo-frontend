@@ -10,19 +10,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { httpInterceptorClass } from './interceptor/http.interceptor';
 import { HomeComponent } from './components/home/home.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { NgxSpinnerModule } from "ngx-spinner";
 import { ProjectCreateComponent } from './components/project-create/project-create.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
@@ -49,7 +41,8 @@ import { NotFoundComponent } from './compenents/not-found/not-found.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: httpInterceptorClass, multi: true }, provideAnimationsAsync()],
   bootstrap: [AppComponent]
