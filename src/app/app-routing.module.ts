@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProjectComponent } from './components/project/project.component';
 import { isNotLoginGuard } from './guard/isNotLogin/is-not-login.guard';
 import { isLoginGuard } from './guard/isLogin/is-login.guard';
-import { NotFoundComponent } from './compenents/not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},

@@ -18,7 +18,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { ProjectCreateComponent } from './components/project-create/project-create.component';
 import { ProjectComponent } from './components/project/project.component';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
-import { NotFoundComponent } from './compenents/not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
