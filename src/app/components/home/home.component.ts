@@ -4,6 +4,7 @@ import { ProjectCreateComponent } from '../project-create/project-create.compone
 import { ProjectService } from '../../services/project/project.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { environment } from '../../../environments/environment.development';
 })
 export class HomeComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  constructor(private _ProjectService: ProjectService, private _router: Router) { }
+  constructor(private _ProjectService: ProjectService, private _router: Router, private _toastr: ToastrService) { }
   Title = ''
   projects = []
   ngOnInit(): void {
@@ -38,5 +39,6 @@ export class HomeComponent implements OnInit {
   logout() {
     localStorage.removeItem(environment.userSecret)
     this._router.navigate(['login'])
+    this._toastr.success('Logout')
   }
 }

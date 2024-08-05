@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
     }
     this._userService.userLogin(this.loginForm.getRawValue()).subscribe({
       next: (res: any) => {
-        console.log(res);
-
         this._toastr.success(res['message'])
         localStorage.setItem(environment.userSecret, res['data'])
         this._router.navigate(['home'])

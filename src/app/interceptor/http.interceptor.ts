@@ -3,6 +3,7 @@ import { catchError, Observable,  tap, throwError } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Injectable } from '@angular/core';
+import { ErrorHandleService } from '../services/errorHandle/error-handle.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Injectable } from '@angular/core';
 
 export class httpInterceptorClass implements HttpInterceptor {
 
-  constructor(private spinner: NgxSpinnerService) { }
+  constructor(private spinner: NgxSpinnerService,private _error:ErrorHandleService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.spinner.show();
     let newRequest = req
@@ -30,6 +31,9 @@ export class httpInterceptorClass implements HttpInterceptor {
         }
       }), catchError((error: HttpErrorResponse) => {
         this.spinner.hide();
+        console.log(error);
+        
+        this._error.handleError(error)
         return throwError(() => error)
       })
 
