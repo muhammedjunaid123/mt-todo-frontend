@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private _fb: FormBuilder,
     private _toastr: ToastrService,
     private _userService: UserService,
-   private _router:Router
+    private _router: Router
   ) { }
   ngOnInit(): void {
     this.registerForm = this._fb.group({
@@ -32,9 +32,7 @@ export class RegisterComponent implements OnInit {
       return
     }
     this._userService.userRegister(this.registerForm.getRawValue()).subscribe({
-      next: (res:  IApiResponse<any>) => {
-        console.log(res);
-
+      next: (res: IApiResponse<any>) => { 
         this._toastr.success(res['message'])
         this._router.navigate(['login'])
       }

@@ -1,6 +1,7 @@
 <section class="bg-gradient-to-r from-blue-50 via-blue-100 to-blue-200 min-h-full">
     <div class="top-2 right-2 absolute">
-        <button (click)="logout()" class="flex ring-2 items-center p-2 ring-black rounded-md">logout <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <button (click)="logout()" class="flex ring-2 items-center p-2 ring-black rounded-md">logout <svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                     <path d="M14 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2" />
                     <path d="M9 12h12l-3-3m0 6l3-3" />
@@ -39,7 +40,7 @@
                 <h2 class="text-5xl font-extrabold text-gray-900 mb-10 text-center">Your Projects</h2>
                 <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <!-- Project Card -->
-                    <div *ngFor="let Project of projects"
+                    <div *ngFor="let Project of projects "
                         class="bg-white shadow-xl rounded-xl overflow-hidden transform hover:scale-105 hover:rotate-1 hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300">
                         <div
                             class="p-8 border-b border-gray-300 flex flex-col h-full bg-gradient-to-b from-white to-gray-50">
@@ -64,11 +65,9 @@
                         </div>
                     </div>
 
-                    <!-- Repeat Project Card as needed -->
-                    <!-- ... -->
+                   
                 </div>
             </div>
         </div>
-
     </section>
 </section>

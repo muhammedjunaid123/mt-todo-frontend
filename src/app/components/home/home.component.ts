@@ -43,4 +43,5 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['login'])
     this._toastr.success('Logout')
   }
+
 }
