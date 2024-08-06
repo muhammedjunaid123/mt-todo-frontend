@@ -16,3 +16,22 @@ Before getting started with the application, you need to set up the environment.
 
    ```bash
    ng generate environments
+
+# Environment Configuration
+
+## API URL
+`apiUrl`: `http://localhost:3000/api/v1`
+
+## User Secret
+`userSecret`: `jewrhtuihtuihoig34hngjdg`
+
+## Contact
+
+For any questions, suggestions, or support, feel free to reach out:
+
+- **Email:** [junaidvinu133@gmail.com](mailto:junaidvinu133@gmail.com)
+
+
+
+ If you have any feedback or need assistance, don't hesitate to contact me.
+
