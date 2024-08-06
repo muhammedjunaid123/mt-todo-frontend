@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ProjectService } from '../../services/project/project.service';
 import { ToastrService } from 'ngx-toastr';
 import { TodoService } from '../../services/todo/todo.service';
+import { IApiResponse } from '../../../types/api.interface';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class TodoCreateComponent implements OnInit {
   ngOnInit(): void {
     this.todoForm = this.fb.group({
       Description: ['', Validators.required],
-      projectId:[this.data['id'],Validators.required]
+      projectId: [this.data['id'], Validators.required]
     });
   }
 
@@ -40,7 +41,7 @@ export class TodoCreateComponent implements OnInit {
         newProject['Description'] = newProject['Description'].trim()
       }
       this._todoservice.todoCreate(newProject).subscribe({
-        next: (res: any) => {
+        next: (res: IApiResponse<any>) => {
           this._ToastrService.success(res['message'])
           this.dialog.closeAll()
 

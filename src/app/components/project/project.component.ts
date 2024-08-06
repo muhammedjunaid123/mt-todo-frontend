@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TodoCreateComponent } from '../todo-create/todo-create.component';
 import { TodoService } from '../../services/todo/todo.service';
 import { ToastrService } from 'ngx-toastr';
+import { IApiResponse } from '../../../types/api.interface';
+import { IProject } from '../../../types/project.interface';
 
 @Component({
   selector: 'app-project',
@@ -13,7 +15,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProjectComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  constructor(private _projectService: ProjectService, private _activeRouter: ActivatedRoute, private _todoService: TodoService, private _toastr: ToastrService) { }
+  constructor(
+    private _projectService: ProjectService,
+    private _activeRouter: ActivatedRoute,
+    private _todoService: TodoService,
+    private _toastr: ToastrService
+  ) { }
   project!: any
   editingTitle = false;
   editingTodoIndex: number | null = null;
@@ -22,7 +29,7 @@ export class ProjectComponent implements OnInit {
     this._activeRouter.queryParams.subscribe((res: any) => {
       this.projectId = res['id']
       this._projectService.get_project(this.projectId).subscribe({
-        next: (res: any) => {
+        next: (res: IApiResponse<IProject[]>) => {
           this.project = res['data'][0]
         }
       })
@@ -35,16 +42,16 @@ export class ProjectComponent implements OnInit {
 
   saveTitle(newTitle: string): void {
     this._projectService.Project_title(newTitle, this.projectId).subscribe({
-      next: (res: any) => {
+      next: (res: IApiResponse<any>) => {
         this._projectService.get_project(this.projectId).subscribe({
-          next: (res: any) => {
+          next: (res: IApiResponse<IProject[]>) => {
             this.project = res['data'][0]
           }
         })
         this.editingTitle = false;
       }
     })
-  
+
   }
 
   toggleEditTodo(index: number): void {
@@ -58,10 +65,10 @@ export class ProjectComponent implements OnInit {
   saveTodo(id: string, newDescription: string, newStatus: boolean): void {
     const data = { _id: id, Status: newStatus, Description: newDescription }
     this._todoService.todoUpdate(data).subscribe({
-      next: (res: any) => {
+      next: (res: IApiResponse<any>) => {
         this._toastr.success(res['message'])
         this._projectService.get_project(this.projectId).subscribe({
-          next: (res: any) => {
+          next: (res: IApiResponse<IProject[]>) => {
             this.project = res['data'][0]
           }
         })
@@ -79,7 +86,7 @@ export class ProjectComponent implements OnInit {
     const dialogRef = this.dialog.open(TodoCreateComponent, { data: { id: this.projectId } });
     dialogRef.afterClosed().subscribe((res) => {
       this._projectService.get_project(this.projectId).subscribe({
-        next: (res: any) => {
+        next: (res: IApiResponse<IProject[]>) => {
           this.project = res['data'][0]
         }
       })
@@ -89,17 +96,16 @@ export class ProjectComponent implements OnInit {
     this._todoService.todoRemove(id, this.projectId).subscribe({
       next: (res) => {
         this._projectService.get_project(this.projectId).subscribe({
-          next: (res: any) => {
-            this.editingTodoIndex = null
+          next: (res: IApiResponse<IProject[]>) => {
             this.project = res['data'][0]
           }
         })
       }
     })
   }
-  export(){
+  export() {
     this._projectService.GistExport(this.projectId).subscribe({
-      next:()=>{
+      next: () => {
         this._toastr.success('Success')
       }
     })

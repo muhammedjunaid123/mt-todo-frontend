@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { __createBinding } from 'tslib';
 import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
+import { IApiResponse } from '../../../types/api.interface';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
       return
     }
     this._userService.userRegister(this.registerForm.getRawValue()).subscribe({
-      next: (res: any) => {
+      next: (res:  IApiResponse<any>) => {
         console.log(res);
 
         this._toastr.success(res['message'])

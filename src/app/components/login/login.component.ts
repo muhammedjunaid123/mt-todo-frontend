@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../services/user/user.service';
 import { environment } from '../../../environments/environment.development';
+import { IApiResponse } from '../../../types/api.interface';
+import { user } from '../../../types/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
       return
     }
     this._userService.userLogin(this.loginForm.getRawValue()).subscribe({
-      next: (res: any) => {
+      next: (res: IApiResponse<string>) => {
         this._toastr.success(res['message'])
         localStorage.setItem(environment.userSecret, res['data'])
         this._router.navigate(['home'])

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProjectService } from '../../services/project/project.service';
 import { ToastrService } from 'ngx-toastr';
+import { IApiResponse } from '../../../types/api.interface';
 
 @Component({
   selector: 'app-project-create',
@@ -34,7 +35,7 @@ export class ProjectCreateComponent {
         newProject['Title'] = newProject['Title'].trim()
       }
       this._projectService.project_create(newProject).subscribe({
-        next: (res: any) => {
+        next: (res:IApiResponse<any>) => {
           this._ToastrService.success(res['message'])
           this.dialog.closeAll()
         
