@@ -19,10 +19,10 @@ Before getting started with the application, you need to set up the environment.
 
 # Environment Configuration
 
-## API URL
+## Add API URL To environment.development.ts
 `apiUrl`: `http://localhost:3000/api/v1`
 
-## User Secret
+## Add User Secret environment.development.ts
 `userSecret`: `jewrhtuihtuihoig34hngjdg`
 
 ## Contact
